@@ -16,7 +16,7 @@ body {
 }      
 
     .top {
-        height: 2px;
+        height: 3px;
         background-color: #dd7381;
 
     }
@@ -101,13 +101,13 @@ hr {
    </div></div>
    <div class="down"></div>
    <div class="wyniki">
-   <div id="NKB"></div><hr>
-   <div id="NKB1"></div><hr>
-   <div id="BKD"></div><hr>
-   <div id="ZM"></div><hr>
-   <div id="U1"></div><hr>
-   <div id="U2"></div><hr>
-   <div id="KP"></div><hr>
+   <div id="NKB"></div>
+   <div id="NKB1"></div>
+   <div id="BKD"></div>
+   <div id="ZM"></div>
+   <div id="U1"></div>
+   <div id="U2"></div>
+   <div id="KP"></div>
    <div id="KZP"></div>
    </div>
    <script>
@@ -214,13 +214,13 @@ function dec2frac(d) {
            var wynikKP = KP(bin,man);
            var wynikKZP = KZP(bin,man,par);
            
-           $("#NKB").html("<b><div class=\"wynjeden\">NKB: </b></div><div class=\"wyndwa\">" + wynikNKB + " (" + dec2frac(wynikNKB) + ")</div>");
-           $("#NKB1").html("<b><div class=\"wynjeden\">NKB-1: </b></div><div class=\"wyndwa\">" + wynikNKB1 + " (" + dec2frac(wynikNKB1) + ")</div>");
-           $("#BKD").html("<b><div class=\"wynjeden\">BKD: </b></div><div class=\"wyndwa\">" + wynikBKD + " (" + dec2frac(wynikBKD) + ")</div>");
-           $("#ZM").html("<b><div class=\"wynjeden\">ZM: </b></div><div class=\"wyndwa\">" + wynikZM + " (" + dec2frac(wynikZM) + ")</div>");
-           $("#U1").html("<b><div class=\"wynjeden\">U1: </b></div><div class=\"wyndwa\">" + wynikU1 + " (" + dec2frac(wynikU1) + ")</div>");
-           $("#U2").html("<b><div class=\"wynjeden\">U2: </b></div><div class=\"wyndwa\">" + wynikU2 + " (" + dec2frac(wynikU2) + ")</div>");
-           $("#KP").html("<b><div class=\"wynjeden\">KP \(BIAS\): </b></div><div class=\"wyndwa\">" + wynikKP + " (" + dec2frac(wynikKP) + ")</div>");
+           $("#NKB").html("<b><div class=\"wynjeden\">NKB: </b></div><div class=\"wyndwa\">" + wynikNKB + " (" + dec2frac(wynikNKB) + ")</div><hr>");
+           $("#NKB1").html("<b><div class=\"wynjeden\">NKB-1: </b></div><div class=\"wyndwa\">" + wynikNKB1 + " (" + dec2frac(wynikNKB1) + ")</div><hr>");
+           $("#BKD").html("<b><div class=\"wynjeden\">BKD: </b></div><div class=\"wyndwa\">" + wynikBKD + " (" + dec2frac(wynikBKD) + ")</div><hr>");
+           $("#ZM").html("<b><div class=\"wynjeden\">ZM: </b></div><div class=\"wyndwa\">" + wynikZM + " (" + dec2frac(wynikZM) + ")</div><hr>");
+           $("#U1").html("<b><div class=\"wynjeden\">U1: </b></div><div class=\"wyndwa\">" + wynikU1 + " (" + dec2frac(wynikU1) + ")</div><hr>");
+           $("#U2").html("<b><div class=\"wynjeden\">U2: </b></div><div class=\"wyndwa\">" + wynikU2 + " (" + dec2frac(wynikU2) + ")</div><hr>");
+           $("#KP").html("<b><div class=\"wynjeden\">KP \(BIAS\): </b></div><div class=\"wyndwa\">" + wynikKP + " (" + dec2frac(wynikKP) + ")</div><hr>");
            $("#KZP").html("<b><div class=\"wynjeden\">KZP: </b></div><div class=\"wyndwa\">" + wynikKZP + " (" + dec2frac(wynikKZP) + ")</div>");
 
            
