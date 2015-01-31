@@ -1,235 +1,155 @@
 <!DOCTYPE html>
 <html lang="pl">
+
 <head>
     <meta charset="UTF-8">
     <title>Kalkulator</title>
 </head>
 <script src="js/jquery.js"></script>
-<style>
-@import url(font/Lato-Regular.ttf);
-body {
-    margin: 0;
-    font-family: 'Lato', sans-serif;
-    font-size: 14px;
-    background-color: #3c3f41;
-    color: #ecf0f1;
-}      
+<link rel="stylesheet" href="css/style.css">
 
-    .top {
-        height: 3px;
-        background-color: #dd7381;
-
-    }
-    
-        .down {
-        height: 3px;
-        background-color: #3b3c51;
-
-    }
-    
-    .middle {
-    height: 250px;
-    background-color: #4d4d65;
-    border-bottom-left-radius: 10px;
-    border-bottom-right-radius: 10px;
-}
-.content {
-    padding-top: 15px;
-    width: 230px;
-    margin-left: auto;
-    margin-right: auto;
-}
-    
-.kalk {
-        display:inline-block;
-        width:220px;
-        margin:0;
-        margin:0 0 7px 0;
-}
-    
-.tekst {
-        width:220px;
-        text-align: center;
-}
-
-.wyniki {
-    margin-left: auto;
-    margin-right: auto;
-    margin-top: 5px;
-    color: #a9b9b8;
-    width:220px;
-    text-align: center;
-    line-height: 30px;
-}
-    
-input {
-    padding: 100px;
-    border: 0;
-    background-color: #464459;
-    height: 25px;
-    border-radius: 6px;
-    color: #8a8ba7;
-    padding: 10px;
-}
-
-.wynjeden {
-    float: left;
-    width: 100px;
-    text-align: left;
-    color: #af759d;
-}
-
-.wyndwa {
-    float: left;
-    width: 120px;
-    text-align: right;
-}
-
-hr {
-    border: 0;
-    height: 1px;
-    width: 220px;
-    background-color: #4b4b4b;
-}
-.footer {
-    height: 35px;
-}
-</style>
 <body>
- <div class="top"></div>
- <div class="middle">
-  <div class="content">
-   <div id="kod"><br><input type="text" class="kalk" id="liczby" placeholder="Kod binarny"></div>
-   <div id="kod"><br><input type="text" class="kalk" id="mantysa" placeholder="Mantysa"></div>
-   <div id="kod"><br><input type="text" class="kalk" id="parametr" placeholder="Parametr dla KZP"></div>
-   </div></div>
-   <div class="down"></div>
-   <div class="wyniki">
-   <div id="NKB"></div>
-   <div id="NKB1"></div>
-   <div id="BKD"></div>
-   <div id="ZM"></div>
-   <div id="U1"></div>
-   <div id="U2"></div>
-   <div id="KP"></div>
-   <div id="KZP"></div>
-   </div>
-   <script>
-       
-       
-function dec2frac(d) {
-    var df = 1, top = 1, bot = 1;
-    var limit = 1e5; //Increase the limit to get more precision.
- 
-    while (df != d && limit-- > 0) {
-        if (df < d) {
-            top += 1;
+    <div class="top"></div>
+    <div class="middle">
+        <div class="content">
+            <div id="kod">
+                <br>
+                <input type="text" class="kalk" id="liczby" placeholder="Kod binarny">
+            </div>
+            <div id="kod">
+                <br>
+                <input type="text" class="kalk" id="mantysa" placeholder="Mantysa">
+            </div>
+            <div id="kod">
+                <br>
+                <input type="text" class="kalk" id="parametr" placeholder="Parametr dla KZP">
+            </div>
+        </div>
+    </div>
+    <div class="wyniki">
+        <div id="NKB"></div>
+        <div id="NKB1"></div>
+        <div id="BKD"></div>
+        <div id="ZM"></div>
+        <div id="U1"></div>
+        <div id="U2"></div>
+        <div id="KP"></div>
+        <div id="KZP"></div>
+    </div>
+    <script>
+        function dec2frac(d) {
+            var df = 1,
+                top = 1,
+                bot = 1;
+            var limit = 1e5; //Increase the limit to get more precision.
+
+            while (df != d && limit-- > 0) {
+                if (df < d) {
+                    top += 1;
+                } else {
+                    bot += 1;
+                    top = parseInt(d * bot, 10);
+                }
+                df = top / bot;
+            }
+            return top + '/' + bot;
         }
-        else {
-            bot += 1;
-            top = parseInt(d * bot, 10);
-        }
-        df = top / bot;
-    }
-    return top + '/' + bot;
-}
-       
-       
-       function NKB(binary, mantysa) {
-        var binrev = binary.split("").reverse().join("");
-        var lsuma = 0;
-        for(i = 0; i < binary.length; i++) {
-               lsuma = lsuma + binrev[i] * Math.pow(2, i);
+
+
+        function NKB(binary, mantysa) {
+            var binrev = binary.split("").reverse().join("");
+            var lsuma = 0;
+            for (i = 0; i < binary.length; i++) {
+                lsuma = lsuma + binrev[i] * Math.pow(2, i);
+            };
+            return Math.pow(2, -mantysa) * lsuma;
         };
-       return Math.pow(2, -mantysa) * lsuma;   
-       };
-       
-       function NKB1(binary, mantysa, wielkosc) {
-           var binary1 = binary.split("").reverse().join("");
-           binary1 = binary1.substr(0, binary1.length - wielkosc).split("").reverse().join("");
-           return NKB(binary1, mantysa);
+
+        function NKB1(binary, mantysa, wielkosc) {
+            var binary1 = binary.split("").reverse().join("");
+            binary1 = binary1.substr(0, binary1.length - wielkosc).split("").reverse().join("");
+            return NKB(binary1, mantysa);
         };
-       
-       function ZM(binary, mantysa) {
-           var binrev = binary.split("").reverse().join("");
-           return Math.pow(-1, binrev[binary.length-1]) * NKB1(binary,0,1) * Math.pow(2, -mantysa);
-       };
-       
+
+        function ZM(binary, mantysa) {
+            var binrev = binary.split("").reverse().join("");
+            return Math.pow(-1, binrev[binary.length - 1]) * NKB1(binary, 0, 1) * Math.pow(2, -mantysa);
+        };
+
         function U1(binary, mantysa) {
-           var binrev = binary.split("").reverse().join("");
-           return ((-binrev[binrev.length-1] * (Math.pow(2,binrev.length-1)-1) * Math.pow(2,-mantysa)) + NKB1(binary,mantysa,1));
-       };
-       
+            var binrev = binary.split("").reverse().join("");
+            return ((-binrev[binrev.length - 1] * (Math.pow(2, binrev.length - 1) - 1) * Math.pow(2, -mantysa)) + NKB1(binary, mantysa, 1));
+        };
+
         function U2(binary, mantysa) {
-           var binrev = binary.split("").reverse().join("");
-           return ((-binrev[binrev.length-1] * (Math.pow(2,binrev.length-1)) * Math.pow(2,-mantysa)) + NKB1(binary,mantysa,1));
-       };
-       
+            var binrev = binary.split("").reverse().join("");
+            return ((-binrev[binrev.length - 1] * (Math.pow(2, binrev.length - 1)) * Math.pow(2, -mantysa)) + NKB1(binary, mantysa, 1));
+        };
+
         function KP(binary, mantysa) {
-           return (NKB(binary,0) - Math.pow(2, binary.length-1)) * Math.pow(2,-mantysa);
-       };
-       
+            return (NKB(binary, 0) - Math.pow(2, binary.length - 1)) * Math.pow(2, -mantysa);
+        };
+
         function KZP(binary, mantysa, podstawa) {
-            if(podstawa == "") {
-            podstawa = 2;    
+            if (podstawa == "") {
+                podstawa = 2;
             };
             var binrev = binary.split("").reverse().join("");
             var n = binary.length - 2;
             var poslowie = "";
-            for(i = mantysa; i <= n; i++) {
-                poslowie = poslowie + binrev.substr(i,1);
+            for (i = mantysa; i <= n; i++) {
+                poslowie = poslowie + binrev.substr(i, 1);
             };
             poslowie = poslowie.split("").reverse().join("");
-            
-            var F = KP(poslowie,0);
+
+            var F = KP(poslowie, 0);
             var nkbm = NKB1(binary, mantysa, mantysa);
-            
-            var wynik = Math.pow(-1,binary[binary.length - 1]) * Math.pow(podstawa, -1) * (1+(podstawa-1)*nkbm) * Math.pow(podstawa, F);
+
+            var wynik = Math.pow(-1, binary[binary.length - 1]) * Math.pow(podstawa, -1) * (1 + (podstawa - 1) * nkbm) * Math.pow(podstawa, F);
             return wynik;
-       };
-       
+        };
+
         function BKD(binary, mantysa) {
-            if(binary.length%4 == 0) {
-            var binrev = binary.split("").reverse().join("");
-            var dlugosc = binary.length / 4 ;
-            var wynik = 0;
-            for(x = 0; x <= dlugosc-1; x++) {
-               var binarka = binrev.substr(4*x+3,1)+binrev.substr(4*x+2,1)+binrev.substr(4*x+1,1)+binrev.substr(4*x,1);
-                wynik+= Math.pow(10, x) * NKB(binarka, mantysa);
+            if (binary.length % 4 == 0) {
+                var binrev = binary.split("").reverse().join("");
+                var dlugosc = binary.length / 4;
+                var wynik = 0;
+                for (x = 0; x <= dlugosc - 1; x++) {
+                    var binarka = binrev.substr(4 * x + 3, 1) + binrev.substr(4 * x + 2, 1) + binrev.substr(4 * x + 1, 1) + binrev.substr(4 * x, 1);
+                    wynik += Math.pow(10, x) * NKB(binarka, mantysa);
                 };
-            return wynik;
+                return wynik;
             };
 
             return 0;
-       };
-       
-       $(".kalk").keyup(function() {
-           
-           var bin = $("#liczby").val();
-           var man = $("#mantysa").val();
-           var par = $("#parametr").val();
+        };
 
-           var wynikNKB = NKB(bin,man);
-           var wynikNKB1 = NKB1(bin,man,1);
-           var wynikBKD = BKD(bin,man);
-           var wynikZM = ZM(bin,man);
-           var wynikU1 = U1(bin,man);
-           var wynikU2 = U2(bin,man);
-           var wynikKP = KP(bin,man);
-           var wynikKZP = KZP(bin,man,par);
-           
-           $("#NKB").html("<b><div class=\"wynjeden\">NKB: </b></div><div class=\"wyndwa\">" + wynikNKB + " (" + dec2frac(wynikNKB) + ")</div><hr>");
-           $("#NKB1").html("<b><div class=\"wynjeden\">NKB-1: </b></div><div class=\"wyndwa\">" + wynikNKB1 + " (" + dec2frac(wynikNKB1) + ")</div><hr>");
-           $("#BKD").html("<b><div class=\"wynjeden\">BKD: </b></div><div class=\"wyndwa\">" + wynikBKD + " (" + dec2frac(wynikBKD) + ")</div><hr>");
-           $("#ZM").html("<b><div class=\"wynjeden\">ZM: </b></div><div class=\"wyndwa\">" + wynikZM + " (" + dec2frac(wynikZM) + ")</div><hr>");
-           $("#U1").html("<b><div class=\"wynjeden\">U1: </b></div><div class=\"wyndwa\">" + wynikU1 + " (" + dec2frac(wynikU1) + ")</div><hr>");
-           $("#U2").html("<b><div class=\"wynjeden\">U2: </b></div><div class=\"wyndwa\">" + wynikU2 + " (" + dec2frac(wynikU2) + ")</div><hr>");
-           $("#KP").html("<b><div class=\"wynjeden\">KP \(BIAS\): </b></div><div class=\"wyndwa\">" + wynikKP + " (" + dec2frac(wynikKP) + ")</div><hr>");
-           $("#KZP").html("<b><div class=\"wynjeden\">KZP: </b></div><div class=\"wyndwa\">" + wynikKZP + " (" + dec2frac(wynikKZP) + ")</div>");          
-            });
-    
-       
+        $(".kalk").keyup(function () {
+
+            var bin = $("#liczby").val();
+            var man = $("#mantysa").val();
+            var par = $("#parametr").val();
+
+            var wynikNKB = NKB(bin, man);
+            var wynikNKB1 = NKB1(bin, man, 1);
+            var wynikBKD = BKD(bin, man);
+            var wynikZM = ZM(bin, man);
+            var wynikU1 = U1(bin, man);
+            var wynikU2 = U2(bin, man);
+            var wynikKP = KP(bin, man);
+            var wynikKZP = KZP(bin, man, par);
+
+            $("#NKB").html("<b><div class=\"wynjeden\">NKB: </b></div><div class=\"wyndwa\">" + wynikNKB + " (" + dec2frac(wynikNKB) + ")</div><hr>");
+            $("#NKB1").html("<b><div class=\"wynjeden\">NKB-1: </b></div><div class=\"wyndwa\">" + wynikNKB1 + " (" + dec2frac(wynikNKB1) + ")</div><hr>");
+            $("#BKD").html("<b><div class=\"wynjeden\">BKD: </b></div><div class=\"wyndwa\">" + wynikBKD + " (" + dec2frac(wynikBKD) + ")</div><hr>");
+            $("#ZM").html("<b><div class=\"wynjeden\">ZM: </b></div><div class=\"wyndwa\">" + wynikZM + " (" + dec2frac(wynikZM) + ")</div><hr>");
+            $("#U1").html("<b><div class=\"wynjeden\">U1: </b></div><div class=\"wyndwa\">" + wynikU1 + " (" + dec2frac(wynikU1) + ")</div><hr>");
+            $("#U2").html("<b><div class=\"wynjeden\">U2: </b></div><div class=\"wyndwa\">" + wynikU2 + " (" + dec2frac(wynikU2) + ")</div><hr>");
+            $("#KP").html("<b><div class=\"wynjeden\">KP \(BIAS\): </b></div><div class=\"wyndwa\">" + wynikKP + " (" + dec2frac(wynikKP) + ")</div><hr>");
+            $("#KZP").html("<b><div class=\"wynjeden\">KZP: </b></div><div class=\"wyndwa\">" + wynikKZP + " (" + dec2frac(wynikKZP) + ")</div>");
+        });
     </script>
     <div class="footer"></div>
 </body>
+
 </html>

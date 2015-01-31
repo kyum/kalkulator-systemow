@@ -1,0 +1,124 @@
+    @import url(font/Lato-Regular.ttf);
+    body {
+        margin: 0;
+        font-family: 'Lato', sans-serif;
+        font-size: 12px;
+        background-color: #3c3f41;
+        color: #ecf0f1;
+    }
+    
+    .top {
+        height: 3px;
+        background-color: #dd7381;
+    }
+    
+    .middle {
+        height: 250px;
+        background-color: #4d4d65;
+        border-bottom-left-radius: 10px;
+        border-bottom-right-radius: 10px;
+        border-bottom: 5px solid #3b3c51;
+    }
+    
+    .content {
+        padding-top: 15px;
+        width: 230px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    
+    .kalk {
+        display: inline-block;
+        width: 220px;
+        margin: 0;
+        margin: 0 0 7px 0;
+    }
+    
+    .tekst {
+        width: 220px;
+        text-align: center;
+    }
+    
+    .wyniki {
+        margin-left: auto;
+        margin-right: auto;
+        margin-top: 5px;
+        color: #a9b9b8;
+        width: 220px;
+        text-align: center;
+        line-height: 30px;
+    }
+    
+    input {
+        padding: 100px;
+        border: 0;
+        background-color: #464459;
+        height: 25px;
+        border-radius: 6px;
+        color: #bf80ac;
+        padding: 10px;
+        font-family: 'Lato', sans-serif;
+    }
+
+input:focus {
+    outline: none;
+    -webkit-box-shadow:inset 0px 0px 0px 10px #f00;
+    -moz-box-shadow:inset 0px 0px 0px 10px #f00;
+    box-shadow:inset 0px 0px 8px 1px #3b3c51;
+}
+    
+    .wynjeden {
+        float: left;
+        width: 100px;
+        text-align: left;
+        color: #af759d;
+        font-size: 14px;
+    }
+    
+    .wyndwa {
+        float: left;
+        width: 120px;
+        text-align: right;
+        font-size: 12px;
+    }
+    
+    hr {
+        border: 0;
+        height: 1px;
+        width: 220px;
+        background-color: #4b4b4b;
+    }
+    
+    .footer {
+        height: 40px;
+    }
+    
+    ::-webkit-input-placeholder {
+        /* WebKit browsers */
+        
+        color: #8a8ba7;
+        font-size: 12px;
+    }
+    
+    :-moz-placeholder {
+        /* Mozilla Firefox 4 to 18 */
+        
+        color: #8a8ba7;
+        opacity: 1;
+        font-size: 12px;
+    }
+    
+    ::-moz-placeholder {
+        /* Mozilla Firefox 19+ */
+        
+        color: #8a8ba7;
+        opacity: 1;
+        font-size: 12px;
+    }
+    
+    :-ms-input-placeholder {
+        /* Internet Explorer 10+ */
+        
+        color: #8a8ba7;
+        font-size: 12px;
+    }
