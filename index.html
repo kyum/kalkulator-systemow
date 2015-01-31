@@ -30,6 +30,8 @@ body {
     .middle {
     height: 250px;
     background-color: #4d4d65;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
 }
 .content {
     padding-top: 15px;
@@ -89,7 +91,9 @@ hr {
     width: 220px;
     background-color: #4b4b4b;
 }
-    
+.footer {
+    height: 35px;
+}
 </style>
 <body>
  <div class="top"></div>
@@ -221,11 +225,11 @@ function dec2frac(d) {
            $("#U1").html("<b><div class=\"wynjeden\">U1: </b></div><div class=\"wyndwa\">" + wynikU1 + " (" + dec2frac(wynikU1) + ")</div><hr>");
            $("#U2").html("<b><div class=\"wynjeden\">U2: </b></div><div class=\"wyndwa\">" + wynikU2 + " (" + dec2frac(wynikU2) + ")</div><hr>");
            $("#KP").html("<b><div class=\"wynjeden\">KP \(BIAS\): </b></div><div class=\"wyndwa\">" + wynikKP + " (" + dec2frac(wynikKP) + ")</div><hr>");
-           $("#KZP").html("<b><div class=\"wynjeden\">KZP: </b></div><div class=\"wyndwa\">" + wynikKZP + " (" + dec2frac(wynikKZP) + ")</div>");
-
-           
-       });
+           $("#KZP").html("<b><div class=\"wynjeden\">KZP: </b></div><div class=\"wyndwa\">" + wynikKZP + " (" + dec2frac(wynikKZP) + ")</div>");          
+            });
     
+       
     </script>
+    <div class="footer"></div>
 </body>
 </html>
